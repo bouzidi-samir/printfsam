@@ -64,8 +64,6 @@ int	conv_int(va_list ap, t_struct *list)
 	if (list->star > 0 && list->precisionlen == 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, int);
-//	if (arg == 0 && list->precisionlen == 0)
-//		return (-1);
 	if ((int)arg < 0)
 	{
 		neg = 1;
@@ -120,6 +118,8 @@ void	conv_str(va_list ap, t_struct *list)
 	else
 		size = ft_strlen(arg);
 	width = list->width - size;
+	if (list->precisionlen < 0)
+		arg = ft_strdup("(null)");
 	if (list->moins > 0)
 	{
 		while (arg[i] && i < size)
@@ -144,7 +144,7 @@ void	conv_str(va_list ap, t_struct *list)
 			i++;
 		}
 	}	
-	if (ft_strncmp(arg, "(null)", 7) == 0)
+	if (ft_strncmp(arg, "(null)", 6) == 0)
 		free(arg);
 }
 

@@ -90,9 +90,15 @@ int	  			conv_unint(va_list ap, t_struct *list)
 	if (list->star > 0 && list->precisionlen == 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, unsigned int);
+	if ((unsigned int)arg < 0)
+	{
+		neg = 1;
+		arg *= -1;
+	}
 	if (arg == 0 && list->precision > 0 && list->precisionlen == 0)
-		return (-1);
-	conv = ft_u_itoa(arg);
+		conv = ft_strdup(" ");
+	else 
+			conv = ft_u_itoa(arg);
 	size = ft_strlen(conv);
 	print_int(list, conv, neg, size);
 	free(conv);

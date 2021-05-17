@@ -75,6 +75,7 @@ int	conv_point(va_list ap, t_struct *list)
 	unsigned long long	point;
 
 	nega = 0;
+	flag_star(ap, list);
 	point = va_arg(ap, unsigned long long);
 	if (point == 0 && list->precision > 0 && list->precisionlen == 0)
 		return (-1);

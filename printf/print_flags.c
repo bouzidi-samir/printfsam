@@ -46,7 +46,7 @@ void	print_width_int(t_struct *list, char *conv, int neg)
 	{
 		if (list->zero > 0 && list->precision == 0)
 			list->nprinted += write(1, "0", 1);
-		else
+		else if
 			list->nprinted += write(1, " ", 1);
 		i++;
 	}
