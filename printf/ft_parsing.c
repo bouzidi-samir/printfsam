@@ -18,7 +18,7 @@ int	parse_width(char c, t_struct *list)
 		list->precision++;
 	else if (c == '.' && list->precision > 0)
 		return (-1);
-	if (c == '0' && list->width == 0 && list->precisionlen == 0)
+	if (c == '0' && list->width == 0 && list->precisionlen == 0 && list->moins == 0)
 		list->zero++;
 	else if (c >= '0' && c <= '9')
 	{	
@@ -40,19 +40,24 @@ int	check_empty(t_struct *list)
 
 int	parse_indicateur(char c, t_struct *list)
 {
-	if (c == '-' && !check_empty(list))
+	if (c == '-' && list->precision == 0)
 		list->moins++;
-	else if (c == '-' && check_empty(list))
-		return (0);
+	//else if (c == '-' && list->precision > 0)
+	//	return (0);
 	if (c == ' ' && !check_empty(list) && list->plus == 0)
 		list->space++;
 	else if (c == ' ' && check_empty(list) && list->plus > 0)
 		return (0);
 	if (c == '*')
-		list->star++;
-	//if (c == '*' && !check_empty(list))
-	//	list->star++;
+	{
+		if (list->precision == 0 )
+			list->star_width++;
+		else if (list->precision == 1)
+			list->star_precision++;
+	}
+	//
 	//	return (0);
+
 	return (1);
 }
 

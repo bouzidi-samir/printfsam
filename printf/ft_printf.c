@@ -24,7 +24,8 @@ void	init_list(t_struct *list)
 	list->width = 0;
 	list->precisionlen = 0;
 	list->precision = 0;
-	list->star = 0;
+	list->star_width = 0;
+	list->star_precision = 0;
 }
 
 int	check_input(const char *str, t_struct *list, va_list ap)

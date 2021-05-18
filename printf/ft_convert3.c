@@ -85,16 +85,15 @@ int	  			conv_unint(va_list ap, t_struct *list)
 	
 	neg = 0;
 	conv = NULL;
-	if (list->star > 0 && list->width == 0)
-		list->width = va_arg(ap, int);
-	if (list->star > 0 && list->precisionlen == 0)
+	flag_star(ap, list);
+	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, unsigned int);
-	if ((unsigned int)arg < 0)
-	{
-		neg = 1;
-		arg *= -1;
-	}
+	//if (arg < 0)
+	//{
+	//	neg = 1;
+	//	arg *= -1;
+	//}
 	if (arg == 0 && list->precision > 0 && list->precisionlen == 0)
 		conv = ft_strdup(" ");
 	else 

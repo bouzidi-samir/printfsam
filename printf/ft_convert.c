@@ -15,7 +15,7 @@
 
 void	flag_star(va_list ap, t_struct *list)
 {
-	if (list->star > 0 && list->width == 0)
+	if (list->star_width > 0)
 	{
 		list->width = va_arg(ap, int);	
 		if (list->width < 0)
@@ -61,7 +61,7 @@ int	conv_int(va_list ap, t_struct *list)
 	neg = 0;
 	conv = NULL;
 	flag_star(ap, list);
-	if (list->star > 0 && list->precisionlen == 0)
+	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, int);
 	if ((int)arg < 0)
@@ -93,7 +93,7 @@ void	print_int(t_struct *list, char *conv, int neg, int size)
 	{
 		print_width_int(list, conv, neg);
 		if (neg == 1)
-			list->nprinted += write(1, "-", 1);
+			list->nprinted += write(1, "-", 1);	
 		print_precision(list, conv);
 		ft_print_fd(conv, size, list);
 	}
@@ -110,17 +110,19 @@ void	conv_str(va_list ap, t_struct *list)
 	i = 0;
 	space = 0;
 	flag_star(ap, list);	
+	if (list->star_precision > 0)
+		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, char *);
+	if (list->precisionlen < 0)
+		arg = ft_strdup("(null)");
 	if (arg == 0)
 		arg = ft_strdup("(null)");
 	if (list->precision > 0 && list->precisionlen < (int)ft_strlen(arg))
 		size = list->precisionlen;
 	else
 		size = ft_strlen(arg);
-	width = list->width - size;
-	if (list->precisionlen < 0)
-		arg = ft_strdup("(null)");
-	if (list->moins > 0)
+	width = list->width - size;	
+	if (list->moins > 0 )
 	{
 		while (arg[i] && i < size)
 		{
@@ -144,7 +146,7 @@ void	conv_str(va_list ap, t_struct *list)
 			i++;
 		}
 	}	
-	if (ft_strncmp(arg, "(null)", 6) == 0)
+	if (ft_strncmp(arg, "(null)", 8) == 0)
 		free(arg);
 }
 

@@ -31,7 +31,8 @@ typedef struct s_struct
 	int		width;
 	int		precisionlen;
 	int		precision;
-	int		star;
+	int		star_width;
+	int     star_precision;
 }			t_struct;
 
 int				ft_printf(const char *str, ...);

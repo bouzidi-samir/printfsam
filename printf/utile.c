@@ -82,9 +82,8 @@ int	conv_x(va_list ap, t_struct *list, char *c)
 	
 	conv = NULL;
 	neg = 0;
-	if (list->star > 0 && list->width == 0)
-		list->width = va_arg(ap, int);
-	if (list->star > 0 && list->precisionlen == 0)
+	flag_star(ap, list);
+	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg (ap, unsigned int);
 	if (arg == 0 && list->precision > 0 && list->precisionlen == 0)
