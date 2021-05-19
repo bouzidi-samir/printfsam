@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utile.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouzidi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:47:57 by sbouzidi          #+#    #+#             */
-/*   Updated: 2021/04/17 11:47:05 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/05/19 11:04:41 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,15 @@ int	conv_x(va_list ap, t_struct *list, char *c)
 	neg = 0;
 	flag_star(ap, list);
 	if (list->star_precision > 0)
-		list->precisionlen = va_arg(ap, int);
+		list->precisionlen = va_arg(ap, unsigned int);
 	arg = va_arg (ap, unsigned int);
-	if (arg == 0 && list->precision > 0 && list->precisionlen == 0)
-		return (-1);
-	if (arg == 0)
-		conv = ft_strdup("0");
+	//if (arg < 0)
+	//{
+	//	neg = 1;
+	//	arg *= -1;
+	//}
+	if (arg == 0 && list->precision > 0 && list->precisionlen == 0) 
+		conv = ft_strdup(" ");
 	else
 		conv = ft_hexad(arg);
 	if (*c == 'x')
