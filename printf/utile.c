@@ -6,7 +6,7 @@
 /*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:47:57 by sbouzidi          #+#    #+#             */
-/*   Updated: 2021/05/19 11:04:41 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:26:58 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	conv_x(va_list ap, t_struct *list, char *c)
 	//	arg *= -1;
 	//}
 	if (arg == 0 && list->precision > 0 && list->precisionlen == 0) 
-		conv = ft_strdup(" ");
+		conv = ft_strdup("");
 	else
 		conv = ft_hexad(arg);
 	if (*c == 'x')

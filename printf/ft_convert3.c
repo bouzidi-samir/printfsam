@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouzidi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:47:57 by sbouzidi          #+#    #+#             */
-/*   Updated: 2021/04/17 11:47:05 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/05/19 14:22:54 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	  			conv_unint(va_list ap, t_struct *list)
 	//	arg *= -1;
 	//}
 	if (arg == 0 && list->precision > 0 && list->precisionlen == 0)
-		conv = ft_strdup(" ");
+		conv = ft_strdup("");
 	else 
 			conv = ft_u_itoa(arg);
 	size = ft_strlen(conv);
