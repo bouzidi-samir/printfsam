@@ -64,14 +64,15 @@ int	check_input(const char *str, t_struct *list, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	int r;
+	unsigned int r;
 	va_list	ap;
 	t_struct	list;	
 	
 	r = 0;
 	init_list(&list);
 	va_start(ap, str);
+	r = check_input(str, &list, ap);
 	va_end(ap);
-	return (check_input(str, &list, ap));
+	return (r);
 }
 
