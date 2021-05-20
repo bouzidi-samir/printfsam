@@ -89,13 +89,13 @@ void	print_int(t_struct *list, char *conv, int neg, int size)
 		ft_print_fd(conv, size, list);
 		print_width_int(list, conv, neg);
 	}
-	else if (list->moins == 0)
+	else if (list->moins == 0 )
 	{
-		if (list->precision > 0)
+		if (list->precision > 0 || list->zero == 0)
 		 	print_width_int(list, conv, neg);
 		if (neg == 1)
 			list->nprinted += write(1, "-", 1);	
-		if (list->precision == 0)
+		if (list->precision == 0 && list->zero > 0)
 		 	print_width_int(list, conv, neg);
 		
 		print_precision(list, conv);
@@ -117,10 +117,10 @@ void	conv_str(va_list ap, t_struct *list)
 	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, char *);
-	if (arg == NULL)
-		arg = ft_strdup("(null)");
 	if (arg == 0)
 		arg = ft_strdup("(null)");
+	if (list->precisionlen < 0)
+		list->precisionlen = 0;
 	if (list->precision > 0 && list->precisionlen < (int)ft_strlen(arg))
 		size = list->precisionlen;
 	else
