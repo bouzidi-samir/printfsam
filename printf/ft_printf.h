@@ -32,15 +32,16 @@ typedef struct s_struct
 	int		precisionlen;
 	int		precision;
 	int		star_width;
-	int     star_precision;
+	int		star_precision;
 }			t_struct;
 
 int				ft_printf(const char *str, ...);
-int				check_input(const char *str, t_struct *list, va_list ap, int);
+int				check_input(const char *str, t_struct *list, va_list ap, int r);
 void			init_list(t_struct *list);
 int				parse_indicateur(char c, t_struct *list);
 int				check_empty(t_struct *list);
 int				parse_width(char c, t_struct *list);
+void			check_conv(const char *str, t_struct *list, int *i, va_list ap);
 void			convert(char c, t_struct *list, va_list ap);
 void			conv_char(va_list ap, t_struct *list);
 int				conv_point(va_list ap, t_struct *list);

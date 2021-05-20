@@ -28,11 +28,25 @@ void	init_list(t_struct *list)
 	list->star_precision = 0;
 }
 
+void	check_conv(const char *str, t_struct *list, int *i, va_list ap)
+{
+	while (ft_strrchr(TYPESFLAGS, str[*i + 1]))
+	{
+		*i = *i + 1;
+		if (ft_strrchr("cspdiuxXfyb%", str[*i]))
+		{
+			convert(str[*i], list, ap);
+			break ;
+		}
+		parse_indicateur(str[*i], list);
+		parse_width(str[*i], list);
+	}	
+}
+
 int	check_input(const char *str, t_struct *list, va_list ap, int r)
 {
 	int	i;
-	//int r;
-	
+
 	i = 0;
 	while (str[i])
 	{
@@ -40,20 +54,11 @@ int	check_input(const char *str, t_struct *list, va_list ap, int r)
 			list->nprinted += write(1, &str[i], 1);
 		else if (str[i] == '%')
 		{	
-			if (!ft_strrchr(TYPESFLAGS, str[i + 1]) && !parse_indicateur(str[i + 1], list))
+			if (!ft_strrchr(TYPESFLAGS, str[i + 1]))
 				list->nprinted += write(1, &str[i], 1);
-			while (ft_strrchr(TYPESFLAGS, str[i + 1]))
-			{
-				i = i + 1;
-				if (ft_strrchr("cspdiuxXfyb%", str[i]))
-				{
-					convert(str[i], list, ap);
-					break ;
-				}
-				else
-					parse_indicateur(str[i], list);
-					parse_width(str[i], list);
-			}
+			if (!parse_indicateur(str[i + 1], list))
+				list->nprinted += write(1, &str[i], 1);
+			check_conv(str, list, &i, ap);
 		}
 		r = r + list->nprinted;
 		init_list(list);
@@ -64,10 +69,10 @@ int	check_input(const char *str, t_struct *list, va_list ap, int r)
 
 int	ft_printf(const char *str, ...)
 {
-	static int r = 0;
-	va_list	ap;
+	static int	r = 0;
+	va_list		ap;
 	t_struct	list;	
-	
+
 	r = 0;
 	init_list(&list);
 	va_start(ap, str);
@@ -75,4 +80,3 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (r);
 }
-
