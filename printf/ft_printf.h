@@ -36,7 +36,7 @@ typedef struct s_struct
 }			t_struct;
 
 int				ft_printf(const char *str, ...);
-int				check_input(const char *str, t_struct *list, va_list ap);
+int				check_input(const char *str, t_struct *list, va_list ap, int);
 void			init_list(t_struct *list);
 int				parse_indicateur(char c, t_struct *list);
 int				check_empty(t_struct *list);

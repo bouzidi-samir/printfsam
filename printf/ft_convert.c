@@ -117,7 +117,7 @@ void	conv_str(va_list ap, t_struct *list)
 	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
 	arg = va_arg(ap, char *);
-	if (list->precisionlen < 0)
+	if (arg == NULL)
 		arg = ft_strdup("(null)");
 	if (arg == 0)
 		arg = ft_strdup("(null)");

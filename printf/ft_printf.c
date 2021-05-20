@@ -28,10 +28,10 @@ void	init_list(t_struct *list)
 	list->star_precision = 0;
 }
 
-int	check_input(const char *str, t_struct *list, va_list ap)
+int	check_input(const char *str, t_struct *list, va_list ap, int r)
 {
 	int	i;
-	int r;
+	//int r;
 	
 	i = 0;
 	while (str[i])
@@ -64,14 +64,14 @@ int	check_input(const char *str, t_struct *list, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	unsigned int r;
+	static int r = 0;
 	va_list	ap;
 	t_struct	list;	
 	
 	r = 0;
 	init_list(&list);
 	va_start(ap, str);
-	r = check_input(str, &list, ap);
+	r = check_input(str, &list, ap, r);
 	va_end(ap);
 	return (r);
 }
