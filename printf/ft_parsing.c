@@ -67,6 +67,19 @@ int	parse_indicateur(char c, t_struct *list)
 	return (1);
 }
 
+void	flag_star(va_list ap, t_struct *list)
+{
+	if (list->star_width > 0)
+	{
+		list->width = va_arg(ap, int);	
+		if (list->width < 0)
+		{
+			list->width *= -1;
+			list->moins++;
+		}
+	}	
+}
+
 void	convert(char c, t_struct *list, va_list ap)
 {
 	if (c == 'c')
