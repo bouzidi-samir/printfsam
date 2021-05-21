@@ -14,7 +14,7 @@
 
 void	init_list(t_struct *list)
 {
-	list->str = NULL;
+	list->precisionpos = 0;
 	list->nprinted = 0;
 	list->moins = 0;
 	list->plus = 0;

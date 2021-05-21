@@ -25,7 +25,10 @@ int	parse_width(char c, t_struct *list)
 		if (list->precision == 0)
 			list->width = list->width * 10 + (c - 48);
 		else
+		{
 			list->precisionlen = list->precisionlen * 10 + (c - 48);
+			list->precisionpos++;
+		}
 	}
 	return (0);
 }

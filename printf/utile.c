@@ -73,35 +73,6 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-int	conv_x(va_list ap, t_struct *list, char *c)
-{
-	unsigned long long	arg;
-	char	*conv;
-	int	neg;
-	int size;
-	
-	conv = NULL;
-	neg = 0;
-	flag_star(ap, list);
-	if (list->star_precision > 0)
-		list->precisionlen = va_arg(ap, unsigned int);
-	arg = va_arg (ap, unsigned int);
-	if (arg == 0 && list->precision == 0 && list->precisionlen == 0) 
-		conv = ft_strdup("0");	
-	else if (arg == 0 && list->precision > 0 && list->precisionlen == 0) 
-		conv = ft_strdup("");
-	else
-		conv = ft_hexad(arg);
-	if (*c == 'x')
-		conv = ft_strtolower(conv);
-	else
-		conv = ft_strtoupper(conv);
-	size = ft_strlen(conv);
-	print_int(list, conv, neg, size);
-	free(conv);
-	return (0);
-}
-
 char	*ft_strtoupper(char *str)
 {
 	int	i;

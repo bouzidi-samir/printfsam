@@ -21,7 +21,7 @@
 
 typedef struct s_struct
 {
-	int		*str;
+	int		precisionpos;
 	int		nprinted;
 	int		zero;
 	int		moins;
@@ -57,6 +57,8 @@ void			format_x(t_struct *list, char c);
 void			ft_print_fd(char *conv, int size, t_struct *list);
 void			ft_putstr_fd(char *s, int fd);
 void			flag_star(va_list ap, t_struct *list);
+char			*ft_hexad(unsigned long long nb);
+char			*ft_u_itoa(unsigned int n);
 char			*ft_strncpy(char *dest, char *src, unsigned int n);
 char			*ft_strrchrp(const char *s, char c);
 char			*ft_itoa(int n);

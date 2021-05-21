@@ -54,19 +54,6 @@ char	*ft_hexad(unsigned long long nb)
 	return (r);
 }
 
-char	*ft_strtolower(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != 0)
-	{
-		str[i] = ft_tolower(str[i]);
-		i++;
-	}
-	return (str);
-}
-
 int	conv_point(va_list ap, t_struct *list)
 {
 	char	*str;
@@ -100,4 +87,33 @@ int	conv_point(va_list ap, t_struct *list)
 	list->nprinted += (ft_strlen(str));
 	free(str);
 	return (1);
+}
+
+int	conv_x(va_list ap, t_struct *list, char *c)
+{
+	unsigned long long	arg;
+	char	*conv;
+	int	neg;
+	int size;
+	
+	conv = NULL;
+	neg = 0;
+	flag_star(ap, list);
+	if (list->star_precision > 0)
+		list->precisionlen = va_arg(ap, unsigned int);
+	arg = va_arg (ap, unsigned int);
+	if (arg == 0 && list->precision == 0 && list->precisionlen == 0) 
+		conv = ft_strdup("0");	
+	else if (arg == 0 && list->precision > 0 && list->precisionlen == 0) 
+		conv = ft_strdup("");
+	else
+		conv = ft_hexad(arg);
+	if (*c == 'x')
+		conv = ft_strtolower(conv);
+	else
+		conv = ft_strtoupper(conv);
+	size = ft_strlen(conv);
+	print_int(list, conv, neg, size);
+	free(conv);
+	return (0);
 }
