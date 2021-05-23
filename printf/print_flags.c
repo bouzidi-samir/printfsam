@@ -39,6 +39,8 @@ void	print_width_int(t_struct *list, char *conv, int neg)
 	
 	i = 0;
 	prec = list->precisionlen - ft_strlen(conv);
+//	if(list->precisionlen < 0)
+//		list->precision = 0;
 	if (prec < 0)
 		prec = 0;
 	s1 = list->width - ft_strlen(conv) - prec - neg;	
@@ -46,6 +48,8 @@ void	print_width_int(t_struct *list, char *conv, int neg)
 	{
 		if (list->zero > 0 && list->precision == 0 && list->moins == 0)
 			list->nprinted += write(1, "0", 1);		
+		else if (list->precisionlen < 0 && list->zero > 0 && list->moins ==0)
+			list->nprinted += write(1, "0", 1);
 		else 
 			list->nprinted += write(1, " ", 1);			
 		i++;
@@ -63,6 +67,11 @@ void	print_width_char(t_struct *list, int width)
 			i++;
 		}
 }
+
+
+
+
+
 
 
 

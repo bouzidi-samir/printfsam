@@ -29,6 +29,8 @@ int	parse_width(char c, t_struct *list)
 			list->precisionlen = list->precisionlen * 10 + (c - 48);
 			list->precisionpos++;
 		}
+	if (c == '-')
+		list->zero = 0;
 	}
 	return (0);
 }
@@ -44,10 +46,7 @@ int	check_empty(t_struct *list)
 int	parse_indicateur(char c, t_struct *list)
 {
 	if (c == '-' && list->precision == 0)
-	{	
 		list->moins++;
-		list->zero--;
-	}
 	//else if (c == '-' && list->precision > 0)
 	//	return (0);
 	if (c == ' ' && !check_empty(list) && list->plus == 0)

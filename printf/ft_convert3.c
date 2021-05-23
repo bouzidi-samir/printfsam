@@ -52,13 +52,16 @@ void	print_int(t_struct *list, char *conv, int neg, int size)
 	}
 	else if (list->moins == 0 )
 	{
+		if (list->precisionlen < 0)
+			list->precision = 0;
 		if (list->precision > 0 || list->zero == 0)
 		 	print_width_int(list, conv, neg);
 		if (neg == 1)
 			list->nprinted += write(1, "-", 1);	
-		if (list->precision == 0 && list->zero > 0)
+		if (list->precision == 0 && list->zero > 0 )
 		 	print_width_int(list, conv, neg);
-		
+		else if (list->precisionlen < 0 && list->zero > 0 && list->moins == 0)
+			print_width_int(list, conv, neg);
 		print_precision(list, conv);
 		ft_print_fd(conv, size, list);
 	}

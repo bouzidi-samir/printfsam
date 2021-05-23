@@ -49,6 +49,7 @@ int				conv_int(va_list ap, t_struct *list);
 int				conv_unint(va_list ap, t_struct *list);
 int				conv_x(va_list ap, t_struct *list, char *c);
 void			conv_str(va_list ap, t_struct *list);
+void			print_str(t_struct *list, char *arg, int width, int size);
 void			print_int(t_struct *list, char *conv, int neg, int size);
 void			print_precision(t_struct *list, char *conv);
 void			print_width_int(t_struct *list, char *conv, int n);

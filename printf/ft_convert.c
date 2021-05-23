@@ -42,9 +42,7 @@ void	conv_str(va_list ap, t_struct *list)
 	char	*arg;
 	int		size;
 	int     width;
-	int i;
 
-	i = 0;
 	flag_star(ap, list);	
 	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
@@ -57,35 +55,59 @@ void	conv_str(va_list ap, t_struct *list)
 		size = ft_strlen(arg);
 	width = list->width - size;	
 	if (list->precisionlen < 0)
-		ft_print_fd(arg,ft_strlen(arg), list);		
-	else
 	{	
-		if (list->moins > 0 )
-		{
-			while (arg[i] && i < size)
-			{
-				if (list->precision > 0 && list->precisionlen == 0)
-					list->nprinted += write(1, " ", 1);
-				else
-				list->nprinted += write(1, &arg[i], 1);
-				i++;
-			}
-			print_width_char(list, width);
-		}
-		else if (list->moins == 0)
-		{
-			print_width_char(list, width);
-			while (arg[i] && i < size)
-			{
-				if (list->precision > 0 && list->precisionlen == 0)
-					list->nprinted += write(1, " ", 1);
-				else
-					list->nprinted += write(1, &arg[i], 1);
-				i++;
-			}
-		}	
+		print_width_char(list, (list->width - ft_strlen(arg)));
+		ft_print_fd(arg,ft_strlen(arg), list);		
 	}
+	else	
+		print_str(list, arg, width, size);
 	if (ft_strncmp(arg, "(null)", 8) == 0)
 		free(arg);
 }
+
+void	print_str(t_struct *list, char *arg, int width, int size)
+{
+	int	i;
+	
+	i = 0;
+if (list->moins > 0 )
+{
+	while (arg[i] && i < size)
+	{
+		if (list->precision > 0 && list->precisionlen == 0)
+			list->nprinted += write(1, " ", 1);
+		else
+			list->nprinted += write(1, &arg[i], 1);
+		i++;
+	}
+	print_width_char(list, width);
+}
+else if (list->moins == 0)
+{
+	print_width_char(list, width);
+	while (arg[i] && i < size)
+	{
+		if (list->precision > 0 && list->precisionlen == 0)
+			list->nprinted += write(1, " ", 1);
+		else
+			list->nprinted += write(1, &arg[i], 1);
+		i++;
+	}
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
