@@ -56,8 +56,16 @@ void	conv_str(va_list ap, t_struct *list)
 	width = list->width - size;	
 	if (list->precisionlen < 0)
 	{	
-		print_width_char(list, (list->width - ft_strlen(arg)));
-		ft_print_fd(arg,ft_strlen(arg), list);		
+		if (list->moins == 0)
+		{	
+			print_width_char(list, (list->width - ft_strlen(arg)));
+			ft_print_fd(arg,ft_strlen(arg), list);		
+		}
+		else
+		{
+			ft_print_fd(arg,ft_strlen(arg), list);	
+			print_width_char(list, (list->width - ft_strlen(arg)));
+		}
 	}
 	else	
 		print_str(list, arg, width, size);
