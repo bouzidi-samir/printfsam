@@ -6,7 +6,7 @@
 /*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 11:47:57 by sbouzidi          #+#    #+#             */
-/*   Updated: 2021/05/19 13:29:54 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/05/25 22:05:12 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	print_width_int(t_struct *list, char *conv, int neg)
 	{
 		if (list->zero > 0 && list->precision == 0 && list->moins == 0)
 			list->nprinted += write(1, "0", 1);
-		else if (list->precisionlen < 0 && list->zero > 0 && list->moins ==0)
+		else if (list->precisionlen < 0 && list->zero > 0 && list->moins == 0)
 			list->nprinted += write(1, "0", 1);
 		else
 			list->nprinted += write(1, " ", 1);
