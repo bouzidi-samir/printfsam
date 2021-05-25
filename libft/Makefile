@@ -25,7 +25,7 @@ $(NAME): $(OBJ)
 	    $(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
 %.o: %.c
-	    $(CC) -o $@ -c $< $(CFLAGS)
+	    $(CC) $(CFLAGS) -o $@ -c $< 
 clean:
 	    rm -f $(OBJ) 
 
