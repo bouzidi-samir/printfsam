@@ -45,7 +45,7 @@ void			check_conv(const char *str, t_struct *list, int *i, va_list ap);
 void			convert(char c, t_struct *list, va_list ap);
 void			conv_char(va_list ap, t_struct *list);
 int				conv_point(va_list ap, t_struct *list);
-void 			print_point(t_struct *list, char *str, int nega);
+void			print_point(t_struct *list, char *str, int nega);
 int				conv_int(va_list ap, t_struct *list);
 int				conv_unint(va_list ap, t_struct *list);
 int				conv_x(va_list ap, t_struct *list, char *c);
