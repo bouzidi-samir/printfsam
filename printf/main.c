@@ -17,8 +17,8 @@ int main ()
 //	i =ft_printf(" 0*%-0*d*0 0*%021d*0 ", 21, 1021, -1011);	
 //	printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X", i, j, k, l, m, n, c, c, j, j, j);	
 //	x = ft_printf( "%0*.*d",2, -2, 8);	"
-		x = printf( " %.*x", 5, "b");	
-//	i = ft_printf(" %.*s ", 0, NULL);
+		x =ft_printf( " %*.*x", 4, -1, 0);	
+//	i = ft_printf(" %.*s ", @:@:wq@0, NULL);
 	printf("%d" , x);
 	write(1, "\n", 1);
 	return(0);

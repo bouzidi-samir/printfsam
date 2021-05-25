@@ -100,12 +100,12 @@ int	conv_x(va_list ap, t_struct *list, char *c)
 	neg = 0;
 	flag_star(ap, list);
 	if (list->star_precision > 0)
-		list->precisionlen = va_arg(ap, unsigned int);
+		list->precisionlen = va_arg(ap, int);
 	arg = va_arg (ap, unsigned int);
-	if (arg == 0 && list->precision == 0 && list->precisionlen == 0) 
+	if (arg == 0 && list->precision > 0 && list->precisionlen < 0) 
 		conv = ft_strdup("0");	
-	else if (arg == 0 && list->precision > 0 && list->precisionlen == 0) 
-		conv = ft_strdup("");
+	else if (arg == 0 && list->precision == 0 && list->precisionlen <= 0) 
+		conv = ft_strdup("0");	
 	else
 		conv = ft_hexad(arg);
 	if (*c == 'x')

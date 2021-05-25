@@ -24,7 +24,7 @@ int	conv_int(va_list ap, t_struct *list)
 	flag_star(ap, list);
 	if (list->star_precision > 0)
 		list->precisionlen = va_arg(ap, int);
-	arg = va_arg(ap, long long int);
+	arg = va_arg(ap, int);
 	if ((int)arg < 0 && arg > -2147483647 - 1)
 	{
 		neg = 1;
